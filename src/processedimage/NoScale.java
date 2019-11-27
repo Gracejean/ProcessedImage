@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 public class NoScale {
 
@@ -17,7 +16,7 @@ public class NoScale {
     public NoScale() {
 
         try {
-            File input = new File("C://Users//2ndyrGroupB//Desktop//image//flower.jpg");
+            File input = new File("C:\\Users\\mendozaje_sd2082\\Desktop\\flower.jpg");
             image = ImageIO.read(input);
             width = image.getWidth();
             height = image.getHeight();
@@ -27,19 +26,21 @@ public class NoScale {
                 for (int j = 0; j < width; j++) {
 
                     Color c = new Color(image.getRGB(j, i));
-//               int red = (int)(c.getRed() * 0.299);
-//               int green = (int)(c.getGreen() * 0.587);
-//               int blue = (int)(c.getBlue() *0.114);
-//               Color newColor = new Color(red+green+blue,
-//               
-//               red+green+blue,red+green+blue);
-                    Color newColor = new Color(0, 0, 0);
 
-                    image.setRGB(j, i, newColor.getRGB());
+                    Color black = new Color(0, 0, 0);
+                    int light = 50;
+
+                    if (c.getRGB() == black.getRGB() || (c.getBlue() < light && c.getGreen() < light && c.getRed() < light)) {
+
+                    } else {
+                        Color white = new Color(255, 255, 255);
+                        image.setRGB(j, i, white.getRGB());
+                    }
+//                   
                 }
             }
 
-            File ouptut = new File("C://Users//2ndyrGroupB//Desktop//image//blackscale.jpg");
+            File ouptut = new File("C:\\Users\\mendozaje_sd2082\\Desktop\\whitescale.jpg");
             ImageIO.write(image, "jpg", ouptut);
 
         } catch (Exception e) {
